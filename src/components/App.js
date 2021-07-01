@@ -8,15 +8,19 @@ function App() {
   // this data will be passed down to the ShoppingList as a prop
   console.log(items);
 
-  // replace 'false' with a state variable that can be toggled between true and false
-  // this will be used for the Dark Mode Toggle feature
-  const appClass = false ? "App dark" : "App light"
+  const [mode, setMode] = useState(false)
+
+  const appClass = mode ? "App dark" : "App light"
+
+  function toggleMode() {
+    setMode(!mode)
+  }
 
   return (
     <div className={appClass}>
       <header>
         <h2>Shopster</h2>
-        <button>Dark Mode</button>
+        <button onClick={toggleMode}>{mode ? 'Dark Mode: ON' : 'Dark Mode: OFF'}</button>
       </header>
       <ShoppingList items={items} />
     </div>
